@@ -2,7 +2,7 @@
    Public API Request
 ======================================== */
 
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 * {
 	box-sizing: border-box;
@@ -14,9 +14,10 @@ html, body {
 }
 
 body {
-    font-family: "Nunito", sans-serif;
+    font-family: 'Indie Flower', cursive;
     text-align: center;
-    background: rgba(235, 235, 235, 0.9);
+    background:  rgb(167, 131, 91);
+    background-image: 'img/ice_cream_background.png';
 }
 
 header {
@@ -29,8 +30,9 @@ header {
 }
 
 header h1 {
-    font-size: 1.25em;
-    color: rgba(50, 50, 50, 0.9);
+    font-size: 2em;
+    font-weight: 800;
+    color:rgba(91, 62, 5, 0.9);
     margin-top: 35px;
 }
 
@@ -88,16 +90,19 @@ header h1 {
     margin: 10px 10px 20px;
     padding: 10px;
     background: rgba(245, 245, 245, 0.9);
-    border-radius: 0.25em;
+    border-radius: 0.5em;
     border: 1px solid rgba(50, 50, 50, 0.3);
     transition: .4s ease-out;
     overflow: hidden;
+    box-shadow: 5px 5px 10px rgb(61, 59, 57);
+    background: rgb(231, 183, 128);
 }
 
 .card-img {
     width: 95px;
     margin: 10px 15px auto 10px;
     border-radius: 50%;
+    box-shadow: inset 0px 0px 10px rgb(49, 49, 43);
 }
 
 .card-info-container {
@@ -106,6 +111,7 @@ header h1 {
 
 .card-name {
     margin: 20px auto 0;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .card-text {
@@ -113,6 +119,7 @@ header h1 {
     color: rgba(50, 50, 50, 0.7);
     margin: 7px auto;
     transition: .4s ease-out;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .cap {
@@ -248,7 +255,7 @@ header h1 {
 @media (min-width: 1024px) {
 
     .card:hover {
-        background: rgba(255, 255, 255, 1);
+        background: rgb(238, 200, 157);
         border: 1px solid rgba(50, 50, 50, 0.9);
     }
 
