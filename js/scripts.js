@@ -8,12 +8,22 @@
 const randomUserUrl = `https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&noinfo&nat=us,gb,nz`;
 const gallery = document.getElementById('gallery');
 let employeeInfo = [];
-//const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector('.modal-container');
 const modal = document.querySelector('.modal-info-container');
 const closeModalBtn = document.querySelector('.modal-close-btn');
+const searchButton = document.getElementById('search-submit');
+
+// ------------------------------------------
+//  FUN ADDITIONS
+// ------------------------------------------
+
 const titles = ['Best Scooper', 'Best Service', 'Tastiest', 'Creamiest', 'Most Innovative', 'Scooper-Dooper', 
 'Best Flavors', 'Best in Show', 'Friendliest', 'Golden Scooper', 'Customer Service', 'Rocky Road', 'Sweet Dreamer', 'Dairy Delight', 'Moo-licious', 'Sweetest'];
+
+const flavEmoji = ['&#x1F366', '&#x1F367', '&#x1F368', '&#x1F36A', '&#x1F382', '&#x1F370', '&#x1F36B', '&#x1F36C', '&#x1F36D', '&#x1F36E', '&#x1F36F', '&#x2615', '&#x1F375', '&#x1F95C', '&#x1F353', 
+    '&#x1F352', '&#x1F351', '&#x1F34D', '&#x1F34C'];
+
+console.log(flavEmoji.length);
 
 // ------------------------------------------
 //  FETCH FUNCTIONS
@@ -64,7 +74,7 @@ function generateHTML(data) {
                 <img class="card-img" src="${picture.large}" alt="profile picture">
             </div>
             <div class="card-info-container">
-                <h3 id="name" class="card-name cap">${name.first} ${name.last}</h3>
+                <h3 id="name" class="card-name cap">${name.first} ${name.last} ${flavEmoji[Math.floor(Math.random()*flavEmoji.length)]}</h3>
                 <p class="card-text">${email}</p>
                 <p class="card-text cap">${city}, ${state}</p>
             </div>
@@ -76,41 +86,97 @@ function generateHTML(data) {
 
 function showModal(index) {
 
-    let{name, dob, phone, email, location: {city, street, state, postcode}, picture } = employeeInfo[index];
-    console.log(employeeInfo[index]);
+    let{name, dob, phone, location: {city, street, state, postcode}, picture } = employeeInfo[index];
+    let date = new Date(dob.date)
 
     const modalHTML =`
-                    <img class="modal-img" src="https://place-hold.it/125x125" alt="profile picture">
-                    <h3 id="name" class="modal-name cap">name</h3>
-                    <p class="modal-text">email</p>
-                    <p class="modal-text cap">city</p>
-                    <hr>
-                    <p class="modal-text">(555) 555-5555</p>
-                    <p class="modal-text">123 Portland Ave., Portland, OR 97204</p>
-                    <p class="modal-text">Birthday: 10/21/2015</p>
-                    <p class="title">${titles[Math.floor(Math.random()*employeeInfo.length)]}</p>
-                    <button class="prev">Previous</button>
-                    <button class="next">Next</button>
+        <div class="modal-style">
+            <img class="modal-img" src="${picture.large}" alt="${name}'s picture">
+            <h3 id="name" class="modal-name cap">${name.first} ${name.last}</h3>
+            <p class="modal-text">${name.first[0]}${name.last}@jays.com</p>
+            <p class="modal-text cap">${city}</p>
+            <hr>
+            <p class="modal-text">${phone}</p>
+            <p class="modal-text">${street.number} ${street.name}, ${city}, ${state} ${postcode}</p>
+            <p class="modal-text">Birthday: ${date.getMonth()+1}/${date.getDate()}</p>
+            //This adds a random title to each employee's modal entry.
+            <p class="title">${titles[index]}</p>
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
     `;
     modalContainer.classList.remove("hidden");
     modal.innerHTML = modalHTML;
 
+    const prev = document.querySelector('.prev');
+    prev.addEventListener('click', e => {
+        if (index > 0) {
+            index--;
+            showModal(index);
+        } else {
+            index = employeeInfo.length - 1;
+            showModal(index);
+        }
+    });
+    
+    const next = document.querySelector('.next');
+    next.addEventListener('click', e => {
+        if(index < employeeInfo.length -1) { 
+            index++;
+        showModal(index);
+        } else {
+            index = 0;
+        showModal(index);
+        }
+    });
 }
+/** This closes the modal window */
+closeModalBtn.addEventListener('click', () => {
+    modalContainer.classList.add("hidden");
+});
 
-
+/**This event listener waits for the individual card element to be clicked and calls the @showModal
+ * function that opens the modal window.  
+ */
 gallery.addEventListener('click', e => {
-
-    //make sure the click is not on the gridContainer itself
+    /**This ensures that the click is captured on the cards in the gallery.*/
     if (e.target !== gallery) {
-
-    // select the card element based on its proximity to actual element clicked
-    const card = e.target.closest(".card");
+    /**
+     * @param card  the card element is the target for the click and used as a reference*/
+    const card = e.target.closest('.card');
+    /**
+     * @param index (number) is taken from the card element from the for loop and passed as an argument
+     * to the showModal() function
+    */
     const index = card.getAttribute('data-index');
 
     showModal(index);
     }
 });
 
-closeModalBtn.addEventListener('click', () => {
-    modalContainer.classList.add("hidden");
+searchButton.addEventListener('click', () => {
+    searchPeople();
 });
+
+
+// This function searches the photos based on input into the search bar.
+
+function searchPeople() {
+    //This variable is set based on what's entered into the search input box.
+    const searchInput = document.querySelector('.search-input').value;
+    
+    //This variable pulls up a nodeList that is used to access the names taken from the randomNames API.
+    const name = document.querySelectorAll('.card-name');    
+ 
+    //Sets a variable for the cards for the search
+    const card = document.querySelectorAll('.card');
+   
+    //This loop includes logic that looks for input from the captions and matches it up with the searchInput.
+    for (let i = 0; i < name.length; i++) {
+    if (name[i].innerHTML.toLowerCase().includes(searchInput.toLowerCase()) ) {
+    card[i].style.display = "";
+    } else {
+    card[i].style.display = "none";
+       }
+    }
+}

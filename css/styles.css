@@ -213,6 +213,10 @@ header h1 {
     transition: .4s ease-out;
     outline: none;
   }
+
+.modal-style {
+    font-family: 'Courier New', Courier, monospace;
+}
   
 .hidden {
     display: none;
