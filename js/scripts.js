@@ -5,7 +5,7 @@
 /** Modifying the terms in the URL for the randomuser API gives only specific results wer're looking for, rather than 
  * having to search through uneeded data.
  */
-const randomUserUrl = `https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&noinfo&nat=us,gb,nz`;
+const randomUserUrl = `https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&noinfo&nat=us,gb,nz,ca`;
 const gallery = document.getElementById('gallery');
 let employeeInfo = [];
 const modalContainer = document.querySelector('.modal-container');
