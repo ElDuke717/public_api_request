@@ -88,7 +88,7 @@ function generateHTML(data) {
             </div>
             <div class="card-info-container">
                 <h3 id="name" class="card-name cap">${name.first} ${name.last} ${flavEmoji[Math.floor(Math.random()*flavEmoji.length)]}</h3>
-                <p class="card-text">${email}</p>
+                <p class="card-text">${name.first[0]}${name.last}@jays.com</p>
                 <p class="card-text cap">${city}, ${state}</p>
             </div>
         </div>`
