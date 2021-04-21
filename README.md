@@ -13,4 +13,4 @@ search input form/box.   The longer the string, the more specific it is.  If the
 
 * Several styling changes have been made to the directory, including addition of a background pattern, addition of favorite ice cream flavors for each employee, random sweet treat emojis next to each employee's name that changes each time the page is refreshed, new added fonts and several other styling changes.
 
-* Please note that since Jay's Ice Cream is an international company, some of the phone numbers and addresses will be formatted differently from how they are in the US. Also, due to legal constraints, Jay's is not allowed to publish employee's year of birth, only the month and date.
+* Please note that since Jay's Ice Cream is an international company (in US, Canada Australia, New Zealand and Great Britain), some of the phone numbers and addresses will be formatted differently from how they are in the US. Also, due to legal constraints, Jay's is not allowed to publish employee's year of birth, only the month and date.
