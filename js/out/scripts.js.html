@@ -1,11 +1,39 @@
-// ------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: scripts.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: scripts.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// ------------------------------------------
 //  GLOBAL VARIABLES
 // ------------------------------------------
 
 /** Modifying the terms in the URL for the randomuser API gives only specific results wer're looking for, rather than 
  * having to search through uneeded data.
  */
-const randomUserUrl = `https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&noinfo&nat=us,gb,nz`;
+const randomUserUrl = `https://randomuser.me/api/?results=12&amp;inc=name,picture,email,location,phone,dob&amp;noinfo&amp;nat=us,gb,nz`;
 const gallery = document.getElementById('gallery');
 let employeeInfo = [];
 const modalContainer = document.querySelector('.modal-container');
@@ -25,8 +53,8 @@ const searchButton = document.getElementById('search-submit');
 const flavors = ['Chocolate', 'Vanilla', 'Strawberry', 'Cookies and Cream', 'Mint Chocolate Chip', 'Cheesecake', 
 'Rocky Road', 'Moosetracks', 'Neopolitan', 'Cookie Dough', 'Pistachio', 'Butter Pecan', 'Vegan Vanilla', 'Fudge Swirl', 'Peanut Butter', 'Lemon Chiffon'];
 
-const flavEmoji = ['&#x1F366', '&#x1F367', '&#x1F368', '&#x1F36A', '&#x1F382', '&#x1F370', '&#x1F36B', '&#x1F36C', '&#x1F36D', '&#x1F36E', '&#x1F36F', '&#x2615', '&#x1F375', '&#x1F95C', '&#x1F353', 
-    '&#x1F352', '&#x1F351', '&#x1F34D', '&#x1F34C'];
+const flavEmoji = ['&amp;#x1F366', '&amp;#x1F367', '&amp;#x1F368', '&amp;#x1F36A', '&amp;#x1F382', '&amp;#x1F370', '&amp;#x1F36B', '&amp;#x1F36C', '&amp;#x1F36D', '&amp;#x1F36E', '&amp;#x1F36F', '&amp;#x2615', '&amp;#x1F375', '&amp;#x1F95C', '&amp;#x1F353', 
+    '&amp;#x1F352', '&amp;#x1F351', '&amp;#x1F34D', '&amp;#x1F34C'];
 
 // ------------------------------------------
 //  FETCH FUNCTIONS
@@ -72,7 +100,7 @@ function generateHTML(data) {
     //set html variable to empty before it's populated below.
     let html = '';
     
-    for (i = 0; i < employeeInfo.length; i++) { 
+    for (i = 0; i &lt; employeeInfo.length; i++) { 
         //Each input is assigned a variable to make the html more concise. 
         let index = [i];
         let name = employeeInfo[i].name;
@@ -82,16 +110,16 @@ function generateHTML(data) {
         let picture = employeeInfo[i].picture;
         //Populates the HTML with the data for each employee.  
         html = `
-        <div class="card" data-index="${index}">
-            <div class="card-img-container">
-                <img class="card-img" src="${picture.large}" alt="profile picture">
-            </div>
-            <div class="card-info-container">
-                <h3 id="name" class="card-name cap">${name.first} ${name.last} ${flavEmoji[Math.floor(Math.random()*flavEmoji.length)]}</h3>
-                <p class="card-text">${email}</p>
-                <p class="card-text cap">${city}, ${state}</p>
-            </div>
-        </div>`
+        &lt;div class="card" data-index="${index}">
+            &lt;div class="card-img-container">
+                &lt;img class="card-img" src="${picture.large}" alt="profile picture">
+            &lt;/div>
+            &lt;div class="card-info-container">
+                &lt;h3 id="name" class="card-name cap">${name.first} ${name.last} ${flavEmoji[Math.floor(Math.random()*flavEmoji.length)]}&lt;/h3>
+                &lt;p class="card-text">${email}&lt;/p>
+                &lt;p class="card-text cap">${city}, ${state}&lt;/p>
+            &lt;/div>
+        &lt;/div>`
     //appends the HTML to the gallery section on the page. 
     gallery.insertAdjacentHTML('beforeend', html);
     }
@@ -110,20 +138,20 @@ function showModal(index) {
     let date = new Date(dob.date)
     //The modal is created with the HTML below.
     const modalHTML =`
-            <div class="modal-contents">
-                <img class="modal-img" src="${picture.large}" alt="${name}'s picture">
-                <h3 id="name" class="modal-name cap">${name.first} ${name.last}</h3>
-                <p class="modal-text">${name.first[0]}${name.last}@jays.com</p>
-                <p class="modal-text cap">${city}</p>
-                <hr>
-                <p class="modal-text">${phone}</p>
-                <p class="modal-text">${street.number} ${street.name}, ${city}, ${state} ${postcode}</p>
-                <p class="modal-text">Birthday: ${date.getMonth()+1}/${date.getDate()}</p>
-                <!--This adds a favorite ice cream flavor to each employee's modal entry. --!>
-                <p class="title">Favorite Flavor: ${flavors[index]}</p>
-                <button class="prev">Previous</button>
-                <button class="next">Next</button>
-            </div>
+            &lt;div class="modal-contents">
+                &lt;img class="modal-img" src="${picture.large}" alt="${name}'s picture">
+                &lt;h3 id="name" class="modal-name cap">${name.first} ${name.last}&lt;/h3>
+                &lt;p class="modal-text">${name.first[0]}${name.last}@jays.com&lt;/p>
+                &lt;p class="modal-text cap">${city}&lt;/p>
+                &lt;hr>
+                &lt;p class="modal-text">${phone}&lt;/p>
+                &lt;p class="modal-text">${street.number} ${street.name}, ${city}, ${state} ${postcode}&lt;/p>
+                &lt;p class="modal-text">Birthday: ${date.getMonth()+1}/${date.getDate()}&lt;/p>
+                &lt;!--This adds a favorite ice cream flavor to each employee's modal entry. --!>
+                &lt;p class="title">Favorite Flavor: ${flavors[index]}&lt;/p>
+                &lt;button class="prev">Previous&lt;/button>
+                &lt;button class="next">Next&lt;/button>
+            &lt;/div>
             `;
     //The modalContainer overlay is shown (a shadow over the existing directory)
     modalContainer.classList.remove("hidden");
@@ -148,7 +176,7 @@ function showModal(index) {
     //increments to the next index
     const next = document.querySelector('.next');
     next.addEventListener('click', e => {
-        if(index < employeeInfo.length -1) { 
+        if(index &lt; employeeInfo.length -1) { 
             index++;
         showModal(index);
         } else {
@@ -197,7 +225,7 @@ function searchPeople() {
     const card = document.querySelectorAll('.card');
     const noResult = document.querySelector('.no-result');
     //This loop includes logic that looks for input from the card names and matches it up with the searchInput. 
-    for (let i = 0; i < name.length; i++) {
+    for (let i = 0; i &lt; name.length; i++) {
     if (name[i].innerHTML.toLowerCase().includes(searchInput.toLowerCase()) ) {
     card[i].style.display = '';
     noResult.classList.add('hidden');
@@ -206,3 +234,26 @@ function searchPeople() {
         }
     }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#checkStatus">checkStatus</a></li><li><a href="global.html#fetchData">fetchData</a></li><li><a href="global.html#flavors">flavors</a></li><li><a href="global.html#generateHTML">generateHTML</a></li><li><a href="global.html#randomUserUrl">randomUserUrl</a></li><li><a href="global.html#searchPeople">searchPeople</a></li><li><a href="global.html#showModal">showModal</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Apr 20 2021 17:37:39 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
